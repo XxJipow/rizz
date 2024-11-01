@@ -326,7 +326,7 @@ body {
     <source src="https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/sounds/victory.mp3" type="audio/mpeg">
 </audio>
 <div id="titleScreen">
-    <h1 class="title">Trenches</h1>
+    <h1 class="title">Trenhces</h1>
     <div class="story">
         Deep within a twisted dimension lies the trenches - The only place where you can become a millionaire overnight. Whats's stopping you? The rugs. <br><br>Instructions: Click on the screen to fire.
     </div>
@@ -390,7 +390,7 @@ const minimapScale = minimap.width / (mazeWidth * cellSize);
 
 let gameWon = false;
 let gameOver = false;
-let player = { x: cellSize * 1.5, y: cellSize * 1.5, speed: 5, immune: false };
+let player = { x: cellSize * 1.5, y: cellSize * 1.5, speed: 10, immune: false };
 let goal = { x: 0, y: 0 };
 let maze = [];
 let camera = { x: 0, y: 0 };
@@ -419,16 +419,16 @@ const enemyMessages = {
 
 const enemies = [];
 const SPAWN_INTERVAL = 15000; // Spawn new enemies every 15 seconds
-const MAX_ENEMIES = 25; // Maximum number of enemies allowed
-const CHASE_DISTANCE = cellSize * 6; // Distance at which enemies start chasing
+const MAX_ENEMIES = 50; // Maximum number of enemies allowed
+const CHASE_DISTANCE = cellSize * 8; // Distance at which enemies start chasing
 const WANDER_CHANGE_DIRECTION = 1000; // How often enemies change wander direction (ms)
 
 const enemyTypes = [
-    { sprite: 'https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/images/mark.png', speed: 2.5 },
-    { sprite: 'https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/images/benben.png', speed: 1.8 },
-    { sprite: 'https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/images/bird.png', speed: 3.5 },
-    { sprite: 'https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/images/benbengirl.png', speed: 2 },
-    { sprite: 'https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/images/flan.png', speed: 1.2 }
+    { sprite: 'https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/images/mark.png', speed: 5.5 },
+    { sprite: 'https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/images/benben.png', speed: 4.8 },
+    { sprite: 'https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/images/bird.png', speed: 9 },
+    { sprite: 'https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/images/benbengirl.png', speed: 5 },
+    { sprite: 'https://file.garden/ZxmC4yQL6hzekzvV/gardenofbenben/images/flan.png', speed: 4.5 }
 ];
 
 function showWinScreen() {
@@ -441,6 +441,8 @@ function showWinScreen() {
 }
 
 function showGameOver(enemyType) {
+    if (gameOver) return;
+    
     const enemyFileName = enemyType.sprite.split('/').pop();
     const jumpscareOverlay = document.getElementById('jumpscareOverlay');
     const jumpscareImage = document.getElementById('jumpscareImage');
@@ -592,7 +594,7 @@ function spawnEnemies() {
     });
 
     // Spawn initial enemies
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 30; i++) {
         spawnNewEnemy();
     }
 }
