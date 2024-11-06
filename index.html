@@ -633,16 +633,24 @@ function drawMaze() {
     ctx.fillStyle = '#f00';
     ctx.fillRect(goal.x - camera.x, goal.y - camera.y, cellSize, cellSize);
     
+    // Adjust player transparency
     if (player.immune) {
-        ctx.globalAlpha = 0.5 + Math.sin(Date.now() / 100) * 0.5;
+        ctx.globalAlpha = 1.0; // Set to fully opaque
+    } else {
+        ctx.globalAlpha = 1.0; // Keep player fully opaque
     }
+
+    // Add glow effect for the player
+    ctx.shadowColor = 'yellow'; // Set the shadow color
+    ctx.shadowBlur = 30; // Increased blur amount for a bigger glow
     ctx.drawImage(playerSprite,
         player.x - camera.x - cellSize/3,
         player.y - camera.y - cellSize/3,
         cellSize*2/3,
         cellSize*2/3
     );
-    ctx.globalAlpha = 1.0;
+    ctx.shadowBlur = 0; // Reset shadow blur
+    ctx.globalAlpha = 1.0; // Reset global alpha to fully opaque
 }
 
 function manhattan(x1, y1, x2, y2) {
